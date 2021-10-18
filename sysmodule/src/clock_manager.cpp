@@ -43,6 +43,7 @@ ClockManager::ClockManager()
     this->context->applicationId = 0;
     this->context->profile = SysClkProfile_Handheld;
     this->context->enabled = false;
+    this->context->boostModeActive = false;
     for(unsigned int i = 0; i < SysClkModule_EnumMax; i++)
     {
         this->context->freqs[i] = 0;
@@ -75,7 +76,6 @@ void ClockManager::Tick()
     if (this->RefreshContext() || this->config->Refresh())
     {
         std::uint32_t hz = 0;
-        std::uint64_t boostOverride = this->config->GetConfigValue(SysClkConfigValue_OverrideBoostClocks);
         for (unsigned int module = 0; module < SysClkModule_EnumMax; module++)
         {
             hz = this->context->overrideFreqs[module];
@@ -91,7 +91,7 @@ void ClockManager::Tick()
 
                 if (hz != this->context->freqs[module] && this->context->enabled)
                 {
-                    if (!boostOverride && this->context->boostModeActive && module != SysClkModule_MEM)
+                    if (this->context->boostModeActive && module != SysClkModule_MEM)
                     {
                         FileUtils::LogLine("[mgr] %s clock not set (Boost mode active)", Clocks::GetModuleName((SysClkModule)module, true));
                     }
@@ -144,6 +144,7 @@ bool ClockManager::RefreshContext()
     if(hasChanged)
     {
         Clocks::ResetToStock();
+        this->context->boostModeActive = false;
     }
 
     std::uint32_t hz = 0;
@@ -173,7 +174,7 @@ bool ClockManager::RefreshContext()
         }
     }
 
-    if (hasChanged)
+    if (this->config->GetConfigValue(SysClkConfigValue_OverrideBoostClocks) && hasChanged)
     {
         bool boostClocks = this->context->freqs[SysClkModule_CPU] == SYSCLK_CPU_BOOST_HZ && this->context->freqs[SysClkModule_GPU] == SYSCLK_GPU_BOOST_HZ;
         if (boostClocks != this->context->boostModeActive)
