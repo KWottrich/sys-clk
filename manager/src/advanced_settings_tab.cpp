@@ -169,7 +169,7 @@ std::string AdvancedSettingsTab::getDescriptionForConfig(SysClkConfigValue confi
         case SysClkConfigValue_PollingIntervalMs:
             return "How fast to check and apply profiles (in milliseconds)";
         case SysClkConfigValue_OverrideBoostClocks:
-            return "Whether sys-clk should override Boost mode clocks\n\uE016  Use 0 to disable";
+            return "Whether sys-clk should override Boost mode clocks (loading screens, etc)\n\uE016  Use 0 to disable";
         default:
             return "";
     }

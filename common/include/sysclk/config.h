@@ -36,7 +36,7 @@ static inline const char* sysclkFormatConfigValue(SysClkConfigValue val, bool pr
         case SysClkConfigValue_CsvWriteIntervalMs:
             return pretty ? "CSV write interval (ms)" : "csv_write_interval_ms";
         case SysClkConfigValue_OverrideBoostClocks:
-            return pretty ? "Whether or not to overwrite Boost clocks" : "override_boost_clk";
+            return pretty ? "Override Boost mode clocks" : "override_boost_clk";
         default:
             return NULL;
     }
