@@ -55,7 +55,14 @@ void BaseMenuGui::preDraw(tsl::gfx::Renderer* renderer)
         {
             std::uint32_t hz = this->context->freqs[freqOffsets[i].m];
             snprintf(buf, sizeof(buf), "%u.%u Mhz", hz / 1000000, hz / 100000 - hz / 1000000 * 10);
-            renderer->drawString(buf, false, freqOffsets[i].x, 115, SMALL_TEXT_SIZE, VALUE_COLOR);
+            if (this->context->boostModeActive && i != SysClkModule_MEM)
+            {
+                renderer->drawString(buf, false, freqOffsets[i].x, 115, SMALL_TEXT_SIZE, BOOST_VALUE_COLOR);
+            }
+            else
+            {
+                renderer->drawString(buf, false, freqOffsets[i].x, 115, SMALL_TEXT_SIZE, VALUE_COLOR);
+            }
         }
         renderer->drawString("CPU:", false, 20, 115, SMALL_TEXT_SIZE, DESC_COLOR);
         renderer->drawString("GPU:", false, 162, 115, SMALL_TEXT_SIZE, DESC_COLOR);

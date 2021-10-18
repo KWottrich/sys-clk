@@ -15,6 +15,7 @@
 #define TEXT_COLOR tsl::gfx::Renderer::a(0xFFFF)
 #define DESC_COLOR tsl::gfx::Renderer::a({ 0xC, 0xC, 0xC, 0xF })
 #define VALUE_COLOR tsl::gfx::Renderer::a({ 0x5, 0xC, 0xA, 0xF })
+#define BOOST_VALUE_COLOR tsl::gfx::Renderer::a({ 0xE, 0xE, 0x5, 0xF })
 #define SMALL_TEXT_SIZE 15
 #define LABEL_SPACING 7
 #define LABEL_FONT_SIZE 15
