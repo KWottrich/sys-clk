@@ -52,7 +52,7 @@ static inline uint64_t sysclkDefaultConfigValue(SysClkConfigValue val)
         case SysClkConfigValue_CsvWriteIntervalMs:
             return 0ULL;
         case SysClkConfigValue_OverrideBoostClocks:
-            return 1ULL;
+            return 0ULL;
         default:
             return 0ULL;
     }

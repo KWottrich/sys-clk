@@ -101,12 +101,12 @@ handheld_mem=800
 
 The `[values]` section allows you to alter timings in sys-clk, you should not need to edit any of these unless you know what you are doing. Possible values are:
 
-| Key                     | Desc                                                                          | Default  |
-|:-----------------------:|-------------------------------------------------------------------------------|:--------:|
-|**temp_log_interval_ms** | Defines how often sys-clk log temperatures, in milliseconds (`0` to disable)  | 0 ms     |
-|**csv_write_interval_ms**| Defines how often sys-clk writes to the CSV, in milliseconds (`0` to disable) | 0 ms     |
-|**poll_interval_ms**     | Defines how fast sys-clk checks and applies profiles, in milliseconds         | 300 ms   |
-|**override_boost_clk**   | Defines whether sys-clk should override boost mode clocks (`0` to disable)    | 1 (true) |
+| Key                     | Desc                                                                          |  Default  |
+|:-----------------------:|-------------------------------------------------------------------------------|:---------:|
+|**temp_log_interval_ms** | Defines how often sys-clk log temperatures, in milliseconds (`0` to disable)  | 0 ms      |
+|**csv_write_interval_ms**| Defines how often sys-clk writes to the CSV, in milliseconds (`0` to disable) | 0 ms      |
+|**poll_interval_ms**     | Defines how fast sys-clk checks and applies profiles, in milliseconds         | 300 ms    |
+|**override_boost_clk**   | Defines whether sys-clk should override boost mode clocks (`1` to enable)     | 0 (false) |
 
 
 ## Capping
@@ -159,3 +159,14 @@ To protect the battery from excessive strain, clocks requested from config may b
 **Notes:**
 1. GPU overclock is capped at 460Mhz in handheld and capped at 768Mhz if charging, unless you're using the official charger.
 2. Clocks higher than 768MHz need the official charger is plugged in.
+
+## Development
+
+Follow the [install procedures at switchbrew.org](https://switchbrew.org/wiki/Setting_up_Development_Environment). Additionally, you will need to install the following dependencies:
+
+* switch-glfw
+* switch-glm
+
+This can be accomplished by running `pacman -S switch-glfw switch-glm`.
+
+Once the environment is set up, run `./build.sh` to build the project. The output will be saved to `/dist`
