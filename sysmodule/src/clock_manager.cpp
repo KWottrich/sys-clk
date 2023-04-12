@@ -174,7 +174,7 @@ bool ClockManager::RefreshContext()
         }
     }
 
-    if (this->config->GetConfigValue(SysClkConfigValue_OverrideBoostClocks) && hasChanged)
+    if (!this->config->GetConfigValue(SysClkConfigValue_OverrideBoostClocks) && hasChanged)
     {
         bool boostClocks = this->context->freqs[SysClkModule_CPU] == SYSCLK_CPU_BOOST_HZ && this->context->freqs[SysClkModule_GPU] == SYSCLK_GPU_BOOST_HZ;
         if (boostClocks != this->context->boostModeActive)
